@@ -66,6 +66,7 @@ const App = ({navigation}) => {
       }
     }
   };
+  // console.log(geojsonData[0]);
   return (
     <View style={styles.container}>
       <Text>Upload Geojson File</Text>
