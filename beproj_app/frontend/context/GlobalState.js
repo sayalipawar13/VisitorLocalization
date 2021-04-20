@@ -3,19 +3,51 @@ import AppReducer from './AppReducer';
 import axios from "axios";
 
 const initialMapState={
+
     geojsonData:[{
-        GeoJsonMap:Object,
+     
+        GeoJsonMap:"",
         createdAt:null
     }],
+    user:{
+      loggedIn:false,
+      username:""
+    },
     error:null,
     loading:true
 }
 
-export const GlobalContext = createContext(initialMapState);
+export const GlobalContext = createContext({state:{...initialMapState}});
 
 export const GlobalProvider =({children})=>{
-    const [state,dispatch]=useReducer(AppReducer,initialMapState);
+    const [state,dispatch]=useReducer(AppReducer,{...initialMapState});
    
+
+    async function register(username,password) {
+      try {
+        const res = await axios.post("http://192.168.0.15:5000/user/register",
+        {
+          username,
+          password,
+        },
+        {withCredentials: true,
+      });
+      // const x=JSON.parse(res.data)
+      // console.log(res.data.username);
+      //react native cookies
+      //react native storage
+      
+      dispatch({
+        type:"REGISTER_USER",
+        payload:username
+      });
+      } catch (error) {
+        console.log(error);
+      }
+ 
+    }
+
+
     async function getGeojson(){
         try {
             const res = await axios.get("http://192.168.0.15:5000/api/maps/allMaps");
@@ -53,10 +85,14 @@ export const GlobalProvider =({children})=>{
     return(
         <GlobalContext.Provider
         value={{
-            geojsonData:state.geojsonData,
-            error:state.error,
-            loading:state.loading,
+          
+            // geojsonData:state.geojsonData,
+            // user:state.user,
+            // error:state.error,
+            // loading:state.loading,
+            state,
             getGeojson,
+            register,
             uploadGeojson
         }}
         >{children}

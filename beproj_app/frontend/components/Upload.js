@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
 });
 
 const App = ({navigation}) => {
-  const {geojsonData,getGeojson, uploadGeojson} = useContext(GlobalContext);
+  const {state,getGeojson, uploadGeojson} = useContext(GlobalContext);
 
   useEffect(()=>{
     getGeojson();
@@ -77,7 +77,7 @@ const App = ({navigation}) => {
       <Button onPress={selectOneFile} title="upload" />
     
 <FlatList 
-data={geojsonData}
+data={state.geojsonData}
 renderItem={({item,index})=>(
   <TouchableHighlight 
   onPress={() => navigation.navigate('DisplayMap',item.GeoJsonMap)}>
