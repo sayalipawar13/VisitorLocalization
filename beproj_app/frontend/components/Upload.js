@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext,useEffect} from 'react';
 import {Text, View, StyleSheet, Button, TouchableHighlight, FlatList} from 'react-native';
 import MapView, {Geojson} from 'react-native-maps';
 import DocumentPicker from 'react-native-document-picker';
@@ -27,8 +27,12 @@ const styles = StyleSheet.create({
 });
 
 const App = ({navigation}) => {
-  const {geojsonData, uploadGeojson} = useContext(GlobalContext);
+  const {geojsonData,getGeojson, uploadGeojson} = useContext(GlobalContext);
 
+  useEffect(()=>{
+    getGeojson();
+  },[]);
+  
   const selectOneFile = async () => {
     try {
       const res = await DocumentPicker.pick({
@@ -51,7 +55,7 @@ const App = ({navigation}) => {
               // console.log(ele.id);
             }
           });
-          uploadGeojson(r);
+          uploadGeojson({GeoJsonMap:r});
         })
         .catch((err) => {
           console.log(err.message, err.code);
@@ -76,12 +80,13 @@ const App = ({navigation}) => {
 data={geojsonData}
 renderItem={({item,index})=>(
   <TouchableHighlight 
-  onPress={() => navigation.navigate('DisplayMap',item)}>
+  onPress={() => navigation.navigate('DisplayMap',item.GeoJsonMap)}>
     <View style={styles.button}>
-    <Text>{item.id}</Text>
+    <Text>{item.GeoJsonMap.id}</Text>
     </View>
   </TouchableHighlight>
 )}
+keyExtractor={(item, index) => index.toString()}
 />
       {/* {geojsonData.length==0 ? <Text>No maps found</Text> :  geojsonData.map((item)=>{
              <TouchableHighlight 

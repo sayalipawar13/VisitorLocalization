@@ -43,7 +43,7 @@ const DisplayMap = ({route}) => {
   const { params : geoJsonMap}=route  //specific map 
 
   const [GMap,setGMap]=useState(geoJsonMap);
-
+  
   var listOfMarkers = [];
   var extractionOfLineStrings = {
     name: 'MyFeatureType',
@@ -70,6 +70,7 @@ const DisplayMap = ({route}) => {
   var l,sourcePoint,destPoint = [];
 
   arr.forEach((element) => {
+    
     if (element.geometry.type == 'LineString') {
       extractionOfLineStrings.features.push(element);
     } else if (element.geometry.type == 'Point') {
@@ -79,10 +80,11 @@ const DisplayMap = ({route}) => {
       ]);
     } else if (element.geometry.type == 'Polygon') {
       MapWithPath.features.push(element);
+
+
      
     }
   });
-
 //below handleSubmit is the logic for finding a path between two given locations.
 const handleSubmit =()=>{
  var m1=MapWithPath.features
@@ -107,6 +109,9 @@ const findInPolygon=(p)=>{
 }
 
   m1.forEach(element => {
+   
+   if(element.properties && element.geometry.type == 'Polygon'){
+     
   if (element.properties.name == source){
 sourceInPolygon=element.geometry
 sourcePoint=findInPolygon(sourceInPolygon);
@@ -115,6 +120,8 @@ sourcePoint=findInPolygon(sourceInPolygon);
     destInPolygon=element.geometry
     destPoint=findInPolygon(destInPolygon);
       }
+    }
+    
   });
  
   // console.log(destPoint,sourcePoint);
@@ -133,7 +140,7 @@ sourcePoint=findInPolygon(sourceInPolygon);
   const res = path.path;
 
   res.forEach((element) => {
-    MapWithPath.features[0].geometry.coordinates.push(element);
+    MapWithPath.features[0].geometry.coordinates.push(element);    //generating a linestring 
   });
   setDestination("");
   setSource("");
