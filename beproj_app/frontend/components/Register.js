@@ -1,5 +1,5 @@
 import React, {useState, useContext, useEffect} from 'react';
-import {Text, View, StyleSheet, Button, TextInput} from 'react-native';
+import {Text, View, StyleSheet, Button, TextInput,TouchableHighlight} from 'react-native';
 import MapView, {Geojson, Marker} from 'react-native-maps';
 import {GlobalContext} from '../context/GlobalState';
 import axios from 'axios';
@@ -9,28 +9,15 @@ const Register = ({navigation}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-//   async function register() {
-//     const res = await axios.post("http://192.168.0.15:5000/user/register",
-//       {
-//         username,
-//         password,
-//       },
-//       {withCredentials: true,
-//     });
     
     
 //         geojsonData.user.loggedIn=true;
 //         geojsonData.user.username=username;
 //         navigation.navigate('DisplayMap',item.GeoJsonMap)
-    
-   
-//   }
 
  async function registerF(){
  
     await register(username,password);
-    // console.log(user.loggedIn);
-    
     // useEffect(()=>{
     //     dispatch({
     //         type:"REGISTER_USER",
@@ -39,10 +26,6 @@ const Register = ({navigation}) => {
     //   },[]);
      
 }
-
-
-
-
 
   return (
     <View>
@@ -58,7 +41,12 @@ const Register = ({navigation}) => {
         placeholder="Enter password"
       />
       <Button onPress={registerF} title="Submit" />
-      <Text>{ state.user.loggedIn}</Text>
+      <TouchableHighlight 
+  onPress={() => navigation.navigate('Login Admin')}>
+    <View style={{padding:20,alignItems:"center",backgroundColor:"lightblue"}}>
+    <Text>Login here</Text>
+    </View>
+  </TouchableHighlight>
     </View>
   );
 };

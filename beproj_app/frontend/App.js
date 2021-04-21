@@ -7,15 +7,16 @@ import Upload from './components/Upload';
 import DisplayMap from './components/DisplayMap';
 import {GlobalProvider,GlobalContext} from './context/GlobalState';
 import Register from './components/Register';
+import Login from "./components/Login";
 
 const Stack = createStackNavigator();
 
 const StackNavigator=()=>{
 
    const {register,state} = useContext(GlobalContext);
-  // const [isSignedIn,setisSignedIn] =useState(false);
-  console.log(state.user.loggedIn)
-  console.log(state.user.username);
+ // const [isSignedIn,setisSignedIn] =useState(false);
+  // console.log(state.user.loggedIn)
+  // console.log(state.user.username);
 
 return(
   <NavigationContainer>
@@ -39,6 +40,11 @@ return(
 <Stack.Screen
       name="Register Admin"
       component={Register}
+      // options={{ title: 'Overview' }}
+    />
+    <Stack.Screen
+      name="Login Admin"
+      component={Login}
       // options={{ title: 'Overview' }}
     />
 </>

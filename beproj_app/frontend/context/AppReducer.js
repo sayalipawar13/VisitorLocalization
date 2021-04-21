@@ -3,12 +3,18 @@ export default (state, action) => {
     case 'REGISTER_USER':
       return {
         ...state,
-        // {
         user: {
           loggedIn: true,
           username: action.payload,
         },
-        // }
+      };
+    case "LOGIN_USER":
+      return{
+        ...state,
+        user:{
+          loggedIn:true,
+          username:action.payload
+        }
       };
     case 'GET_GEOJSON':
       return {
