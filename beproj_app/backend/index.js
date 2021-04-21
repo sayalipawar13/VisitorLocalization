@@ -7,6 +7,7 @@ const bcrypt = require("bcryptjs");
 const session = require("express-session");
 const dotenv=require("dotenv");
 const connectDB=require("./config/db");
+const userData=require("./routes/userData");
 
 dotenv.config({path:"./config/config.env"});
 
@@ -31,12 +32,16 @@ app.use(express.json());
     })
   );
   app.use(cookieParser("secretcode"));
-const userData=require("./routes/userData");
-const geojsonData=require("./routes/geoJsonData");
+  app.use(passport.initialize());
+  app.use(passport.session());
+  require('./config/passportConfig')(passport);
 
 
 //user visits login page
+
+
 app.use("/user",userData);
+const geojsonData=require("./routes/geoJsonData");
 
 //after login user will see his/her data
 app.use("/api/maps",geojsonData);

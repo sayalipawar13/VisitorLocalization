@@ -1,9 +1,9 @@
 const express=require("express");
 const router=express.Router();
-const{authenticateUser,registerUser}=require("../controllers/userData");
+const{authenticateUser,registerUser,getUser}=require("../controllers/userData");
 
 
-// router.get("/login",getUser);
+router.get("/",getUser);
 
 router.post("/login",authenticateUser);
 
