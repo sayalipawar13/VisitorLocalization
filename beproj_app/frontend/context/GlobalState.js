@@ -7,6 +7,7 @@ const initialMapState = {
     {
       GeoJsonMap: '',
       createdAt: null,
+      owner:''
     },
   ],
   user: {
@@ -47,7 +48,6 @@ export const GlobalProvider = ({children}) => {
   }
 
   async function login(username, password) {
-    console.log('iugjyfhglogin');
     try {
       const res = await axios.post(
         'http://192.168.0.15:5000/user/login',
@@ -74,6 +74,7 @@ export const GlobalProvider = ({children}) => {
         type: 'GET_GEOJSON',
         payload: res.data.data,
       });
+      // console.log(res.data.data);
     } catch (err) {
       //   dispatch({
       //     type:"EXPENSE_ERROR",
@@ -82,7 +83,8 @@ export const GlobalProvider = ({children}) => {
     }
   }
   //Actions
-  async function uploadGeojson(geojson) {
+  async function uploadGeojson(geojson,username) {
+    console.log(geojson,username);
     const config = {
       headers: {
         'Content-Type': 'application/json',
@@ -91,7 +93,7 @@ export const GlobalProvider = ({children}) => {
     try {
       const res = await axios.post(
         'http://192.168.0.15:5000/api/maps/uploadMap',
-        geojson,
+        {geojson,username},
         config,
       );
       dispatch({

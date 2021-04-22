@@ -5,6 +5,7 @@ import DocumentPicker from 'react-native-document-picker';
 import RNFS from 'react-native-fs';
 import gju from 'geojson-utils';
 import {GlobalContext} from '../context/GlobalState';
+import moment from 'moment';
 
 const styles = StyleSheet.create({
   container: {
@@ -55,7 +56,7 @@ const App = ({navigation}) => {
               // console.log(ele.id);
             }
           });
-          uploadGeojson({GeoJsonMap:r});
+          uploadGeojson({GeoJsonMap:r,createdAt:moment()},state.user.username);
         })
         .catch((err) => {
           console.log(err.message, err.code);
@@ -70,7 +71,7 @@ const App = ({navigation}) => {
       }
     }
   };
-  // console.log(geojsonData[0]);
+ 
   return (
     <View style={styles.container}>
       <Text>Upload Geojson File</Text>
@@ -82,7 +83,7 @@ renderItem={({item,index})=>(
   <TouchableHighlight 
   onPress={() => navigation.navigate('DisplayMap',item.GeoJsonMap)}>
     <View style={styles.button}>
-    <Text>{item.GeoJsonMap.id}</Text>
+    <Text>{item.GeoJsonMap.id}  {item.owner}</Text>
     </View>
   </TouchableHighlight>
 )}
