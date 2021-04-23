@@ -1,6 +1,6 @@
-import React, {useState, useContext} from 'react';
+import React, {useState,useEffect, useContext,useRef} from 'react';
 import {Text, View, StyleSheet, Button, TextInput} from 'react-native';
-import MapView, {Geojson, Marker} from 'react-native-maps';
+import MapView, {Geojson, Marker,AnimatedRegion} from 'react-native-maps';
 import PathFinder from 'geojson-path-finder';
 import point from 'turf-point';
 // import geoJson from './Geojson.json';
@@ -41,7 +41,7 @@ const DisplayMap = ({route}) => {
   const [source, setSource] = useState('');
   const [destination, setDestination] = useState('');
   const { params : geoJsonMap}=route  //specific map 
-
+  const _map=useRef(null);
   const [GMap,setGMap]=useState(geoJsonMap);
   
   var listOfMarkers = [];
@@ -56,7 +56,10 @@ const DisplayMap = ({route}) => {
     features: [
       {
         type: 'Feature',
-        properties: {},
+        properties: {
+        // stroke:'green',
+        // strokeWidth:2  
+        },
         geometry: {
           type: 'LineString',
           coordinates: [],
@@ -80,7 +83,7 @@ const DisplayMap = ({route}) => {
       ]);
     } else if (element.geometry.type == 'Polygon') {
       MapWithPath.features.push(element);
-
+// console.log(element);
 
      
     }
@@ -145,18 +148,39 @@ sourcePoint=findInPolygon(sourceInPolygon);
   setDestination("");
   setSource("");
   setGMap(MapWithPath);
+
+  console.log(MapWithPath.features[0]);
+  if(_map.current) {
+    _map.current.animateToRegion(
+     {
+      longitude:sourcePoint[0],
+      latitude: sourcePoint[1],
+      latitudeDelta: 0.00011,
+      longitudeDelta: 0.00011,
+     },
+      1000
+    );
+  }
 }
+
+// GMap.features[0].properties["stroke-width"]=15
+
+// console.log(GMap.features);
+
+
+
+
   return (
     <View style={styles.container}>
       <MapView
         // onPress={(e) => console.log(e.nativeEvent.coordinate)}
-
+        ref={_map}
         style={styles.map}
         initialRegion={{
-          longitude: 73.01636584103107,
-          latitude: 19.029871062517362,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
+          longitude: 73.01651584103107,
+          latitude: 19.029427797068698,
+          latitudeDelta: 0.0011,
+          longitudeDelta: 0.0011,
         }}>
         {listOfMarkers.map((marker, index) => (
           <Marker

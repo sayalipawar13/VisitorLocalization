@@ -8,6 +8,7 @@ import DisplayMap from './components/DisplayMap';
 import {GlobalProvider,GlobalContext} from './context/GlobalState';
 import Register from './components/Register';
 import Login from "./components/Login";
+import FirstPage from './components/FirstPage';
 
 const Stack = createStackNavigator();
 
@@ -37,6 +38,10 @@ return(
 </>
 ) : (
 <>
+<Stack.Screen
+  name="FirstPage"
+  component={FirstPage}
+/>
 <Stack.Screen
       name="Register Admin"
       component={Register}
