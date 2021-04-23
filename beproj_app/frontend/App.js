@@ -9,6 +9,7 @@ import {GlobalProvider,GlobalContext} from './context/GlobalState';
 import Register from './components/Register';
 import Login from "./components/Login";
 import FirstPage from './components/FirstPage';
+import QrcodePage from './components/QrcodePage';
 
 const Stack = createStackNavigator();
 
@@ -50,6 +51,11 @@ return(
     <Stack.Screen
       name="Login Admin"
       component={Login}
+      // options={{ title: 'Overview' }}
+    />
+    <Stack.Screen
+      name="QrcodePage"
+      component={QrcodePage}
       // options={{ title: 'Overview' }}
     />
 </>

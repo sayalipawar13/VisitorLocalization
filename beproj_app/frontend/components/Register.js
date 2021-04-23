@@ -37,6 +37,7 @@ const Register = ({navigation}) => {
       <TextInput
         //   value={destination}
         name="password"
+        secureTextEntry={true}
         onChangeText={(e) => setPassword(e)}
         placeholder="Enter password"
       />

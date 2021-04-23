@@ -4,10 +4,6 @@ import {Register} from './Register';
 import {GlobalContext} from '../context/GlobalState';
 
 const FirstPage = ({navigation}) => {  
-  const onPressButton = () => {  
-        Alert.alert('You clicked the button!')
-    }  
-  
         return (  
 
             <View style={styles.container}>  
@@ -19,7 +15,7 @@ const FirstPage = ({navigation}) => {
                 </View>  
                 <View style={styles.buttonContainer}>  
                     <Button  
-                        onPress={onPressButton}  
+                        onPress={()=>navigation.navigate('QrcodePage')}  
                         title="Visitor"  
                         color="#009933"  
                     />  

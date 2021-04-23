@@ -5,6 +5,7 @@ import axios from 'axios';
 const initialMapState = {
   geojsonData: [
     {
+      id:'',
       GeoJsonMap: '',
       createdAt: null,
       owner:''

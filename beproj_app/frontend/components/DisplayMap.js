@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
 });
 
 const DisplayMap = ({route}) => {
-  const {geojsonData} = useContext(GlobalContext); // provide all available maps data
+  // const {geojsonData} = useContext(GlobalContext); // provide all available maps data
   const [source, setSource] = useState('');
   const [destination, setDestination] = useState('');
   const { params : geoJsonMap}=route  //specific map 
