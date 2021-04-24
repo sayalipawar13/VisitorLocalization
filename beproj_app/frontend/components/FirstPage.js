@@ -26,7 +26,8 @@ const FirstPage = ({navigation}) => {
                 
             </View>  
         );  
-    }  
+     
+    };
  
   
     const styles = StyleSheet.create({  

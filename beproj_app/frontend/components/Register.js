@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 import MapView, {Geojson, Marker} from 'react-native-maps';
 import {GlobalContext} from '../context/GlobalState';
-import axios from 'axios';
 
 const Register = ({navigation}) => {
   const {register, state} = useContext(GlobalContext);
@@ -47,6 +46,7 @@ const Register = ({navigation}) => {
   // const {userError, passError} = err;
   return (
     <View style={styles.container}>
+
       <Image
         style={{width: 450, height: 300, marginBottom: 40}}
         source={require('../assets/LoginImg.jpg')}
@@ -69,6 +69,7 @@ const Register = ({navigation}) => {
         value={password}
         secureTextEntry={true}
         onChangeText={(e) => setPassword(e)}
+        secureTextEntry={true}
         placeholder="Enter password"
       />
       {err.passError ? (
@@ -106,31 +107,34 @@ const Register = ({navigation}) => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    backgroundColor: '#f0f0f0',
-  },
-
+const styles = StyleSheet.create({  
+  container: {  
+      flex: 1,  
+      justifyContent: 'center',  
+      backgroundColor: '#f0f0f0',
+  },  
+  
   input: {
     margin: 15,
     height: 40,
     borderRadius: 10,
     borderColor: '#0B5841',
     borderWidth: 1,
-  },
+ },
+ 
+ buttonContainer: {
+  marginVertical: 10,
+  marginHorizontal: 15,
+  justifyContent: 'center',
+  alignContent: 'center',
+  height: 40,
+  borderRadius: 10,
+  overflow: 'hidden',
+  elevation: 3
+ }
 
-  buttonContainer: {
-    marginVertical: 10,
-    marginHorizontal: 15,
-    justifyContent: 'center',
-    alignContent: 'center',
-    height: 40,
-    borderRadius: 10,
-    overflow: 'hidden',
-    elevation: 3,
-  },
-});
+})  
+
+
 
 export default Register;

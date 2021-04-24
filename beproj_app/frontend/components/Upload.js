@@ -1,19 +1,19 @@
-import React, {useContext,useEffect} from 'react';
-import {Text, View, StyleSheet, Button, TouchableHighlight, FlatList} from 'react-native';
-import MapView, {Geojson} from 'react-native-maps';
+import React, { useContext, useEffect } from 'react';
+import { Text, View, StyleSheet, Button, TouchableHighlight, FlatList } from 'react-native';
+import MapView, { Geojson } from 'react-native-maps';
 import DocumentPicker from 'react-native-document-picker';
 import RNFS from 'react-native-fs';
 import gju from 'geojson-utils';
-import {GlobalContext} from '../context/GlobalState';
+import { GlobalContext } from '../context/GlobalState';
 import moment from 'moment';
 import axios from 'axios';
 
 const styles = StyleSheet.create({
   container: {
     ...StyleSheet.absoluteFillObject,
-
-    height: '100%',
-    margin: '20%',
+    marginTop:10,
+    marginVertical: 40,
+    marginHorizontal:20,
     // width: 400,
     // justifyContent: 'flex-end',
     alignItems: 'center',
@@ -21,20 +21,49 @@ const styles = StyleSheet.create({
   map: {
     ...StyleSheet.absoluteFillObject,
   },
-  button: {
+  // button: {
+  //   alignItems: "center",
+  //   backgroundColor: "white",
+  //   padding: 20
+  // },
+  buttonContainer: {
+    marginTop: 30,
+    marginHorizontal: 15,
+    justifyContent: 'center',
+    alignContent: 'center',
+    height: 40,
+    width: 200,
+    borderRadius: 10,
+    overflow: 'hidden',
+    elevation: 3
+   },
+  tableRow: {
+    flexDirection: "row",
+    height: 40,
     alignItems: "center",
-    backgroundColor: "white",
-    padding: 20
   },
+  columnHeader: {
+    width: "20%",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  columnHeaderTxt: {
+    color: "white",
+    fontWeight: "bold",
+  },
+  columnRowTxt: {
+    width: "50%",
+    textAlign: "center",
+  }
 });
 
 const App = ({navigation}) => {
   const {state,getGeojson, uploadGeojson,logout} = useContext(GlobalContext);
 
-  useEffect(()=>{
+  useEffect(() => {
     getGeojson();
-  },[]);
-  
+  }, []);
+
   const selectOneFile = async () => {
     try {
       const res = await DocumentPicker.pick({
@@ -57,7 +86,7 @@ const App = ({navigation}) => {
               // console.log(ele.id);
             }
           });
-          uploadGeojson({GeoJsonMap:r,createdAt:moment()},state.user.username);
+          uploadGeojson({ GeoJsonMap: r, createdAt: moment() }, state.user.username);
         })
         .catch((err) => {
           console.log(err.message, err.code);
@@ -72,27 +101,34 @@ const App = ({navigation}) => {
       }
     }
   };
-//  console.log(state.geojsonData);
+
   return (
     <View style={styles.container}>
-                  <Button onPress={logout} title="Logout" />
+                        <Button onPress={logout} title="Logout" />
 
+      <Text style={{marginVertical: 20}}>Upload Geojson File</Text>
+      <FlatList 
+        data={state.geojsonData}
+        keyExtractor={(item, index) => index.toString()}
+        renderItem={({ item, index }) => {
+        return(
+          <>
+              <View style={{ ...styles.tableRow, backgroundColor: "#ccffeb"}}>
+                <Text style={{ ...styles.columnRowTxt}}>MAP NAME</Text>
+                <Text style={styles.columnRowTxt}>OWNER</Text>
+              </View>
+            <TouchableHighlight underlayColor="#ffffff00"
+              onPress={() => navigation.navigate('DisplayMap', item.GeoJsonMap)}>
 
-      <Text>Upload Geojson File</Text>
-      <Button onPress={selectOneFile} title="upload" />
-    
-<FlatList 
-data={state.geojsonData}
-renderItem={({item,index})=>(
-  <TouchableHighlight 
-  onPress={() => navigation.navigate('DisplayMap',item.GeoJsonMap)}>
-    <View style={styles.button}>
-    <Text>{item.GeoJsonMap.id}  {item.owner}</Text>
-    </View>
-  </TouchableHighlight>
-)}
-keyExtractor={(item, index) => index.toString()}
-/>
+              <View style={{ ...styles.tableRow, backgroundColor:  "white",marginBottom:15,elevation:5}}>
+                <Text style={{ ...styles.columnRowTxt}}>{item.GeoJsonMap.id}</Text>
+                <Text style={styles.columnRowTxt}>{item.owner}</Text>
+              </View>
+            </TouchableHighlight>
+            </>
+          )
+        }}
+      />
       {/* {geojsonData.length==0 ? <Text>No maps found</Text> :  geojsonData.map((item)=>{
              <TouchableHighlight 
              onPress={() => navigation.navigate('DisplayMap')}>
@@ -102,7 +138,12 @@ keyExtractor={(item, index) => index.toString()}
              </TouchableHighlight>
           })}
       */}
+      <View style={styles.buttonContainer}> 
+      <Button onPress={selectOneFile} title="Upload new map" color="#019C6E"/>
     </View>
+          
+    </View>
+    
   );
 };
 export default App;

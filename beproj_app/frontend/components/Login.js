@@ -2,7 +2,7 @@ import React, {useState, useContext, useEffect} from 'react';
 import {Text, View, StyleSheet, Button, TextInput, Image} from 'react-native';
 import MapView, {Geojson, Marker} from 'react-native-maps';
 import {GlobalContext} from '../context/GlobalState';
-import axios from 'axios';
+// import {AdminProfile} from './components/AdminProfile';
 
 const Login = ({navigation}) => {
   const {login, state} = useContext(GlobalContext);
@@ -33,6 +33,7 @@ const Login = ({navigation}) => {
         name="password"
         secureTextEntry={true}
         onChangeText={(e) => setPassword(e)}
+        secureTextEntry={true}
         placeholder="Enter password"
       />
       <View style={styles.buttonContainer}>

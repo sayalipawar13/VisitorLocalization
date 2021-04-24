@@ -9,9 +9,13 @@ import {GlobalProvider,GlobalContext} from './context/GlobalState';
 import Register from './components/Register';
 import Login from "./components/Login";
 import FirstPage from './components/FirstPage';
+<<<<<<< HEAD
 import QrcodePage from './components/QrcodePage';
 import QRscanner from './components/QRscanner';
 import VisitorDisplayMap from './components/VisitorDisplayMap';
+=======
+import AdminProfile from './components/AdminProfile';
+>>>>>>> bfda922c5283d01cfcc767fe8f770567c10ee79e
 
 const Stack = createStackNavigator();
 
@@ -28,32 +32,54 @@ return(
   <Stack.Navigator>
   {state.user.loggedIn ? (
 <>
+    <Stack.Screen
+      name="AdminProfile"
+      component={AdminProfile}
+      options={{  title: 'Admin Profile',headerStyle: {
+        backgroundColor: '#00e6ac' 
+     }, headerTitleAlign:'center' }}
+/>
 <Stack.Screen
-      name="Home"
+      name="Upload"
       component={Upload}
+      options={{ title: 'Choose a Map', headerStyle: {
+        backgroundColor: '#00e6ac' 
+     }, headerTitleAlign:'center' } }
+    
     />
     <Stack.Screen
       name="DisplayMap"
       component={DisplayMap}
-      options={{ title: 'Overview' }}
+      options={{ title: 'View Map', headerStyle: {
+        backgroundColor: '#00e6ac' 
+     }, headerTitleAlign:'center' } }
     />
 
 </>
 ) : (
 <>
 <Stack.Screen
-  name="FirstPage"
+  name="Visitor Localization"
   component={FirstPage}
+  options={{ headerStyle: {
+    backgroundColor: '#00e6ac' 
+ }, headerTitleAlign:'center' }}
 />
 <Stack.Screen
       name="Register Admin"
       component={Register}
       // options={{ title: 'Overview' }}
+      options={{ headerStyle: {
+        backgroundColor: '#00e6ac' 
+     }, headerTitleAlign:'center' }}
     />
     <Stack.Screen
       name="Login Admin"
       component={Login}
       // options={{ title: 'Overview' }}
+      options={{ headerStyle: {
+        backgroundColor: '#00e6ac' 
+     }, headerTitleAlign:'center' }}
     />
     <Stack.Screen
       name="QRscanner"
@@ -67,9 +93,7 @@ return(
     />
 </>
 )}
- 
-    
-  </Stack.Navigator>
+   </Stack.Navigator>
 </NavigationContainer>
 );
 }
