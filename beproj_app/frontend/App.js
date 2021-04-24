@@ -26,15 +26,15 @@ return(
   <Stack.Navigator>
   {state.user.loggedIn ? (
 <>
-    {/* <Stack.Screen
-      name="Admin Profile"
+    <Stack.Screen
+      name="AdminProfile"
       component={AdminProfile}
-      options={{ headerStyle: {
+      options={{  title: 'Admin Profile',headerStyle: {
         backgroundColor: '#00e6ac' 
      }, headerTitleAlign:'center' }}
-/> */}
+/>
 <Stack.Screen
-      name="Home"
+      name="Upload"
       component={Upload}
       options={{ title: 'Choose a Map', headerStyle: {
         backgroundColor: '#00e6ac' 

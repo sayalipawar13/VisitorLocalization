@@ -26,14 +26,26 @@ const styles = StyleSheet.create({
     opacity: 0.9,
   },
   input: {
-    width: 300,
-    height: 44,
-    padding: 10,
-    borderRadius: 20,
-    marginTop: 20,
-    marginBottom: 10,
-    backgroundColor: 'lightgrey',
-  },
+    margin: 15,
+    height: 40,
+    width: 320,
+    borderRadius: 10,
+    borderColor: '#0B5841',
+    backgroundColor:'#ccffeb',
+    borderWidth: 1,
+ },
+ 
+ submitContainer: {
+  marginVertical: 10,
+  marginHorizontal:15,
+  justifyContent: 'center',
+  alignContent: 'center',
+  width:320,
+  borderRadius: 10,
+  overflow: 'hidden',
+  elevation: 3
+ }
+
 });
 
 const DisplayMap = ({route}) => {
@@ -193,7 +205,7 @@ sourcePoint=findInPolygon(sourceInPolygon);
 
         <Geojson
           geojson={GMap}
-          strokeColor="red"
+          strokeColor="green"
           fillColor="transparent"
           strokeWidth={2}
         />
@@ -213,7 +225,10 @@ sourcePoint=findInPolygon(sourceInPolygon);
           placeholder="Enter destination"
           style={styles.input}
         />
-          <Button onPress={handleSubmit} title="Submit"/>
+        <View style={styles.submitContainer}>
+        <Button onPress={handleSubmit} title="Submit" color="#019C6E" />
+        </View>
+         
       </View>
     </View>
   );

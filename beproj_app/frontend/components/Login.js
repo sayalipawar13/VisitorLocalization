@@ -14,7 +14,7 @@ const Login = ({navigation}) => {
 
   return (
     <View>
-      <Image style={{width:410, height:280, marginVertical:30}} source={require('../assets/loginImg2.jpg')}/>
+      <Image style={{width:410, height:300, marginVertical:30}} source={require('../assets/loginImg2.jpg')}/>
       <TextInput
         name="username"
         style={styles.input}
