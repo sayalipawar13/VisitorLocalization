@@ -9,6 +9,7 @@ import {GlobalProvider,GlobalContext} from './context/GlobalState';
 import Register from './components/Register';
 import Login from "./components/Login";
 import FirstPage from './components/FirstPage';
+import AdminProfile from './components/AdminProfile';
 
 const Stack = createStackNavigator();
 
@@ -25,14 +26,27 @@ return(
   <Stack.Navigator>
   {state.user.loggedIn ? (
 <>
+    {/* <Stack.Screen
+      name="Admin Profile"
+      component={AdminProfile}
+      options={{ headerStyle: {
+        backgroundColor: '#00e6ac' 
+     }, headerTitleAlign:'center' }}
+/> */}
 <Stack.Screen
       name="Home"
       component={Upload}
+      options={{ title: 'Choose a Map', headerStyle: {
+        backgroundColor: '#00e6ac' 
+     }, headerTitleAlign:'center' } }
+    
     />
     <Stack.Screen
-      name="Display Map"
+      name="DisplayMap"
       component={DisplayMap}
-      options={{ title: 'Overview' }}
+      options={{ title: 'View Map', headerStyle: {
+        backgroundColor: '#00e6ac' 
+     }, headerTitleAlign:'center' } }
     />
 
 </>
@@ -63,9 +77,7 @@ return(
     />
 </>
 )}
- 
-    
-  </Stack.Navigator>
+   </Stack.Navigator>
 </NavigationContainer>
 );
 }

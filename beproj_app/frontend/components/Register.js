@@ -1,16 +1,12 @@
-import React, {useState, useContext, useEffect} from 'react';
-import {Text, View, StyleSheet, Button, TextInput,TouchableHighlight, Image} from 'react-native';
-import MapView, {Geojson, Marker} from 'react-native-maps';
+import React, {useState, useContext} from 'react';
+import {View, StyleSheet, Button, TextInput, Image} from 'react-native';
 import {GlobalContext} from '../context/GlobalState';
-import axios from 'axios';
 
 const Register = ({navigation}) => {
   const {register,state} = useContext(GlobalContext);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-    
-    
 //         geojsonData.user.loggedIn=true;
 //         geojsonData.user.username=username;
 //         navigation.navigate('DisplayMap',item.GeoJsonMap)
@@ -29,21 +25,26 @@ const Register = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      <Image style={{width:410, height:350, paddingBottom:100}} source={require('../assets/LoginImg.jpg')}/>
+      <Image style={{width:450,height:300, marginBottom:40}} source={require('../assets/LoginImg.jpg')}/>
 
-      <TextInput style={styles.buttonContainer}
+      <TextInput style={styles.input}
         name="username"
         onChangeText={(e) => setUsername(e)}
         placeholder="Enter username"
       />
-      <TextInput style={styles.buttonContainer}
+      <TextInput style={styles.input}
         //   value={destination}
         name="password"
         onChangeText={(e) => setPassword(e)}
+        secureTextEntry={true}
         placeholder="Enter password"
       />
-      <Button onPress={registerF} style={styles.buttonContainer} color="#019C6E" paddingTop="70" title="Submit" />
-      <Button onPress={() => navigation.navigate('Login Admin')}  style={styles.buttonContainer} color="#0B5841" title="Login here" />
+      <View style={styles.buttonContainer}>
+      <Button onPress={registerF} color="#019C6E" title="Submit" />
+      </View>
+      <View style={styles.buttonContainer}>
+      <Button onPress={() => navigation.navigate('Login Admin')} color="#0B5841" title="Login here" />
+      </View>
       
       {/* <TouchableHighlight 
   onPress={() => navigation.navigate('Login Admin')}>
@@ -59,21 +60,30 @@ const styles = StyleSheet.create({
   container: {  
       flex: 1,  
       justifyContent: 'center',  
-      backgroundColor: '#f0f0f0'
+      backgroundColor: '#f0f0f0',
   },  
-  buttonContainer: {  
-      margin: 20 , 
-      borderRadius: 12,
-      zIndex: 2
-
-  }, 
+  
+  input: {
+    margin: 15,
+    height: 40,
+    borderRadius: 10,
+    borderColor: '#0B5841',
+    borderWidth: 1,
+ },
  
+ buttonContainer: {
+  marginVertical: 10,
+  marginHorizontal: 15,
+  justifyContent: 'center',
+  alignContent: 'center',
+  height: 40,
+  borderRadius: 10,
+  overflow: 'hidden',
+  elevation: 3
+ }
 
-  multiButtonContainer: {  
-      margin: 20,  
-      flexDirection: 'row',  
-      justifyContent: 'space-between' ,
-  }  
 })  
+
+
 
 export default Register;
