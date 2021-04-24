@@ -11,6 +11,7 @@ import Login from "./components/Login";
 import FirstPage from './components/FirstPage';
 import QrcodePage from './components/QrcodePage';
 import QRscanner from './components/QRscanner';
+import VisitorDisplayMap from './components/VisitorDisplayMap';
 
 const Stack = createStackNavigator();
 
@@ -38,7 +39,6 @@ return(
     />
 
 </>
-//scrcpy
 ) : (
 <>
 <Stack.Screen
@@ -58,6 +58,11 @@ return(
     <Stack.Screen
       name="QRscanner"
       component={QRscanner}
+      // options={{ title: 'Overview' }}
+    />
+     <Stack.Screen
+      name="VisitorDisplayMap"
+      component={VisitorDisplayMap}
       // options={{ title: 'Overview' }}
     />
 </>

@@ -13,7 +13,7 @@ import QRCodeScanner from 'react-native-qrcode-scanner';
 import { RNCamera } from 'react-native-camera';
 import axios from 'axios';
 
-const QRscanner=()=>{
+const QRscanner=({navigation})=>{
     const {state,getGeojson}=useContext(GlobalContext);
     // useEffect(()=>{
     //     getGeojson();
@@ -21,11 +21,16 @@ const QRscanner=()=>{
     //   console.log(state.geojsonData[0]._id);
 
       async function onSuccess(e){
-        console.log(e.data);
+        // console.log(e.data);
         const id=e.data
+        try {
           const res=await axios.post("http://192.168.0.15:5000/visitor/viewMap",{id});
-          console.log(e.data);
-          
+          // console.log(res.data);
+          navigation.navigate('VisitorDisplayMap',res.data.GeoJsonMap)
+        } catch (error) {
+          console.log(error)
+        }
+         
       }
     return (
         <View>

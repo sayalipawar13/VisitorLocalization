@@ -68,6 +68,18 @@ export const GlobalProvider = ({children}) => {
     }
   }
 
+  async function logout(username, password) {
+    try {
+      dispatch({
+        type: 'LOGOUT_USER',
+        // payload: username,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+
   async function getGeojson() {
     try {
       const res = await axios.get('http://192.168.0.15:5000/api/maps/allMaps');
@@ -114,6 +126,7 @@ export const GlobalProvider = ({children}) => {
         getGeojson,
         register,
         login,
+        logout,
         uploadGeojson,
       }}>
       {children}

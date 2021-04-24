@@ -6,6 +6,7 @@ import RNFS from 'react-native-fs';
 import gju from 'geojson-utils';
 import {GlobalContext} from '../context/GlobalState';
 import moment from 'moment';
+import axios from 'axios';
 
 const styles = StyleSheet.create({
   container: {
@@ -28,7 +29,7 @@ const styles = StyleSheet.create({
 });
 
 const App = ({navigation}) => {
-  const {state,getGeojson, uploadGeojson} = useContext(GlobalContext);
+  const {state,getGeojson, uploadGeojson,logout} = useContext(GlobalContext);
 
   useEffect(()=>{
     getGeojson();
@@ -74,6 +75,9 @@ const App = ({navigation}) => {
 //  console.log(state.geojsonData);
   return (
     <View style={styles.container}>
+                  <Button onPress={logout} title="Logout" />
+
+
       <Text>Upload Geojson File</Text>
       <Button onPress={selectOneFile} title="upload" />
     

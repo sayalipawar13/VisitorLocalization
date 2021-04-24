@@ -16,6 +16,14 @@ export default (state, action) => {
           username:action.payload
         }
       };
+      case "LOGOUT_USER":
+        return{
+          // ...state,
+          user:{
+            loggedIn:false,
+            // username:action.payload
+          }
+        };
     case 'GET_GEOJSON':
       return {
         ...state,
