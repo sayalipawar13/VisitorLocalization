@@ -30,7 +30,7 @@ return(
       component={Upload}
     />
     <Stack.Screen
-      name="DisplayMap"
+      name="Display Map"
       component={DisplayMap}
       options={{ title: 'Overview' }}
     />
@@ -39,18 +39,27 @@ return(
 ) : (
 <>
 <Stack.Screen
-  name="FirstPage"
+  name="Visitor Localization"
   component={FirstPage}
+  options={{ headerStyle: {
+    backgroundColor: '#00e6ac' 
+ }, headerTitleAlign:'center' }}
 />
 <Stack.Screen
       name="Register Admin"
       component={Register}
       // options={{ title: 'Overview' }}
+      options={{ headerStyle: {
+        backgroundColor: '#00e6ac' 
+     }, headerTitleAlign:'center' }}
     />
     <Stack.Screen
       name="Login Admin"
       component={Login}
       // options={{ title: 'Overview' }}
+      options={{ headerStyle: {
+        backgroundColor: '#00e6ac' 
+     }, headerTitleAlign:'center' }}
     />
 </>
 )}
