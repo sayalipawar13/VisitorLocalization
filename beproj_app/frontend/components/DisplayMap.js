@@ -205,9 +205,9 @@ sourcePoint=findInPolygon(sourceInPolygon);
 
         <Geojson
           geojson={GMap}
-          strokeColor="green"
+          strokeColor="#e62417"
           fillColor="transparent"
-          strokeWidth={2}
+          strokeWidth={3}
         />
       </MapView>
       <View style={styles.buttonsContainer}>

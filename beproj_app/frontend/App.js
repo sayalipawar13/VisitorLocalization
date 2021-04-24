@@ -9,13 +9,10 @@ import {GlobalProvider,GlobalContext} from './context/GlobalState';
 import Register from './components/Register';
 import Login from "./components/Login";
 import FirstPage from './components/FirstPage';
-<<<<<<< HEAD
-import QrcodePage from './components/QrcodePage';
+// import QrcodePage from './components/QrcodePage';
 import QRscanner from './components/QRscanner';
 import VisitorDisplayMap from './components/VisitorDisplayMap';
-=======
 import AdminProfile from './components/AdminProfile';
->>>>>>> bfda922c5283d01cfcc767fe8f770567c10ee79e
 
 const Stack = createStackNavigator();
 

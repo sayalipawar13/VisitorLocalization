@@ -7,33 +7,46 @@ import point from 'turf-point';
 import gju from 'geojson-utils';
 
 const styles = StyleSheet.create({
-  container: {
-    ...StyleSheet.absoluteFillObject,
-
-    height: '100%',
-    width: 400,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-  },
-  map: {
-    flex: 1,
-    ...StyleSheet.absoluteFillObject,
-  },
-  buttonsContainer: {
-    // flexDirection: 'row',
+    container: {
+      ...StyleSheet.absoluteFillObject,
+  
+      height: '100%',
+      width: 400,
+      justifyContent: 'flex-end',
+      alignItems: 'center',
+    },
+    map: {
+      flex: 1,
+      ...StyleSheet.absoluteFillObject,
+    },
+    buttonsContainer: {
+      // flexDirection: 'row',
+      justifyContent: 'center',
+      opacity: 0.9,
+    },
+    input: {
+      margin: 15,
+      height: 40,
+      width: 320,
+      borderRadius: 10,
+      borderColor: '#0B5841',
+      backgroundColor:'#ccffeb',
+      borderWidth: 1,
+   },
+   
+   submitContainer: {
+    marginVertical: 10,
+    marginHorizontal:15,
     justifyContent: 'center',
-    opacity: 0.9,
-  },
-  input: {
-    width: 300,
-    height: 44,
-    padding: 10,
-    borderRadius: 20,
-    marginTop: 20,
-    marginBottom: 10,
-    backgroundColor: 'lightgrey',
-  },
-});
+    alignContent: 'center',
+    width:320,
+    borderRadius: 10,
+    overflow: 'hidden',
+    elevation: 3
+   }
+  
+  });
+  
 
 const DisplayMap = ({route}) => {
   // const {geojsonData} = useContext(GlobalContext); // provide all available maps data
@@ -193,7 +206,7 @@ sourcePoint=findInPolygon(sourceInPolygon);
           geojson={GMap}
           strokeColor="red"
           fillColor="transparent"
-          strokeWidth={2}
+          strokeWidth={3}
         />
       </MapView>
       <View style={styles.buttonsContainer}>
@@ -211,7 +224,10 @@ sourcePoint=findInPolygon(sourceInPolygon);
           placeholder="Enter destination"
           style={styles.input}
         />
-          <Button onPress={handleSubmit} title="Submit"/>
+        <View style={styles.submitContainer}>
+        <Button onPress={handleSubmit} title="Submit" color="#019C6E" />
+        </View>
+         
       </View>
     </View>
   );

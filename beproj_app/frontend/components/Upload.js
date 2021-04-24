@@ -104,8 +104,9 @@ const App = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-                        <Button onPress={logout} title="Logout" />
-
+      <View style={styles.buttonContainer}> 
+                        <Button onPress={logout} title="Logout" color="#019C6E" />
+</View>
       <Text style={{marginVertical: 20}}>Upload Geojson File</Text>
       <FlatList 
         data={state.geojsonData}
