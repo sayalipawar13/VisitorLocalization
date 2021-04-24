@@ -12,21 +12,21 @@ import {
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import { RNCamera } from 'react-native-camera';
 
-import { CameraRoll } from "@react-native-community/cameraroll";
-import RNFS from "react-native-fs";
+// import { CameraRoll } from "@react-native-community/cameraroll";
+// import RNFS from "react-native-fs";
 
-  saveQrToDisk=()=> {
-   	svg.toDataURL((data) => {
-   		RNFS.writeFile(RNFS.CachesDirectoryPath+"/some-name.png", data, 'base64')
-   		  .then((success) => {
-   			  return CameraRoll.saveToCameraRoll(RNFS.CachesDirectoryPath+"/some-name.png", 'photo')
-   		  })
-   		  .then(() => {
-   			  setState({ busy: false, imageSaved: true  })
-   			  ToastAndroid.show('Saved to gallery !!', ToastAndroid.SHORT)
-   		  })
-   	})
-  };
+//   saveQrToDisk=()=> {
+//    	svg.toDataURL((data) => {
+//    		RNFS.writeFile(RNFS.CachesDirectoryPath+"/some-name.png", data, 'base64')
+//    		  .then((success) => {
+//    			  return CameraRoll.saveToCameraRoll(RNFS.CachesDirectoryPath+"/some-name.png", 'photo')
+//    		  })
+//    		  .then(() => {
+//    			  setState({ busy: false, imageSaved: true  })
+//    			  ToastAndroid.show('Saved to gallery !!', ToastAndroid.SHORT)
+//    		  })
+//    	})
+//   };
  
 const QRcodePage=()=>{
     const {state,getGeojson}=useContext(GlobalContext);
@@ -40,15 +40,6 @@ const QRcodePage=()=>{
       }
     return (
         <View>
-            <QRCodeScanner
-        onRead={onSuccess}
-        // flashMode={RNCamera.Constants.FlashMode.torch}
-        bottomContent={
-          <TouchableOpacity >
-            <Text >OK. Got it!</Text>
-          </TouchableOpacity>
-        }
-      />
           <QRCode
             value={'60817faa6ef3052ec40cce4a'}
             size={200}

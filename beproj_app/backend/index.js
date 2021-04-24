@@ -8,6 +8,7 @@ const session = require("express-session");
 const dotenv=require("dotenv");
 const connectDB=require("./config/db");
 const userData=require("./routes/userData");
+const visitorMap=require("./routes/visitorMap");
 
 dotenv.config({path:"./config/config.env"});
 
@@ -41,6 +42,9 @@ app.use(express.json());
 
 
 app.use("/user",userData);
+
+app.use("/visitor",visitorMap);
+
 const geojsonData=require("./routes/geoJsonData");
 
 //after login user will see his/her data

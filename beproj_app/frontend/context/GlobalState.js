@@ -44,7 +44,7 @@ export const GlobalProvider = ({children}) => {
         payload: username,
       });
     } catch (error) {
-      console.log(error);
+      console.log(error,"ihughv");
     }
   }
 
