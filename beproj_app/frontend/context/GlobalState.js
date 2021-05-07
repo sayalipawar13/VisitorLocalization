@@ -27,7 +27,7 @@ export const GlobalProvider = ({children}) => {
   async function register(username, password) {
     try {
       const res = await axios.post(
-        'http://192.168.0.15:5000/user/register',
+        'http://192.168.0.7:5000/user/register',
         {
           username,
           password,
@@ -51,14 +51,15 @@ export const GlobalProvider = ({children}) => {
   async function login(username, password) {
     try {
       const res = await axios.post(
-        'http://192.168.0.15:5000/user/login',
+        'http://192.168.0.7:5000/user/login',
         {
           username,
           password,
         },
         {withCredentials: true},
       );
-      console.log(res.data);
+      const cookie=res.Set-Cookie;
+      console.log(res);
       dispatch({
         type: 'LOGIN_USER',
         payload: username,
@@ -70,9 +71,12 @@ export const GlobalProvider = ({children}) => {
 
   async function logout(username, password) {
     try {
+
+      const res=await axios.post('http://192.168.0.7:5000/user/logout');
+      console.log(res.data);
+
       dispatch({
         type: 'LOGOUT_USER',
-        // payload: username,
       });
     } catch (error) {
       console.log(error);
@@ -82,7 +86,7 @@ export const GlobalProvider = ({children}) => {
 
   async function getGeojson() {
     try {
-      const res = await axios.get('http://192.168.0.15:5000/api/maps/allMaps');
+      const res = await axios.get('http://192.168.0.7:5000/api/maps/allMaps');
       dispatch({
         type: 'GET_GEOJSON',
         payload: res.data.data,
@@ -105,7 +109,7 @@ export const GlobalProvider = ({children}) => {
     };
     try {
       const res = await axios.post(
-        'http://192.168.0.15:5000/api/maps/uploadMap',
+        'http://192.168.0.7:5000/api/maps/uploadMap',
         {geojson,username},
         config,
       );

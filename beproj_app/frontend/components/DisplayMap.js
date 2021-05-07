@@ -70,7 +70,7 @@ const DisplayMap = ({route}) => {
         type: 'Feature',
         properties: {
         // stroke:'green',
-        // strokeWidth:2  
+        // strokeWidth:15 
         },
         geometry: {
           type: 'LineString',
@@ -157,6 +157,10 @@ sourcePoint=findInPolygon(sourceInPolygon);
   res.forEach((element) => {
     MapWithPath.features[0].geometry.coordinates.push(element);    //generating a linestring 
   });
+
+  MapWithPath.features[0].properties["stroke"]="green";
+
+console.log(GMap.features);
   setDestination("");
   setSource("");
   setGMap(MapWithPath);
