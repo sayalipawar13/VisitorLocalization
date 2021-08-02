@@ -24,7 +24,7 @@ const QRscanner=({navigation})=>{
         // console.log(e.data);
         const id=e.data
         try {
-          const res=await axios.post("http://192.168.0.15:5000/visitor/viewMap",{id});
+          const res=await axios.post("http://192.168.0.8:5000/visitor/viewMap",{id});
           // console.log(res.data);
           navigation.navigate('VisitorDisplayMap',res.data.GeoJsonMap)
         } catch (error) {
@@ -33,17 +33,19 @@ const QRscanner=({navigation})=>{
          
       }
     return (
-        <View>
+        // <View>
             <QRCodeScanner
         onRead={onSuccess}
-        // flashMode={RNCamera.Constants.FlashMode.torch}
-        bottomContent={
-          <TouchableOpacity >
-            <Text >Scan the QR code to view a map</Text>
-          </TouchableOpacity>
+        topContent={
+          <Text style={{fontSize:18}}>Scan the QR code to view a map</Text>
         }
+        // bottomContent={
+        //   <TouchableOpacity >
+        //     <Text style={{fontSize:18}} >Scan the QR code to view a specific map</Text>
+        //   </TouchableOpacity>
+        // }
       />
-        </View>
+        // </View>
       );
 }
    
